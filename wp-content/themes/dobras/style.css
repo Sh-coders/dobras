@@ -1,0 +1,49 @@
+@charset "UTF-8";
+/*
+Theme Name: Dobras
+Theme URI:
+Version: 1.0
+
+ */
+* {
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: #000;
+}
+
+.wrap {
+    width: 1170px;
+}
+
+footer {
+    margin-top: auto;
+}
+
+
+.title-h1 {
+    font-weight: 900;
+    font-size: 48px;
+    line-height: 59px;
+    text-transform: uppercase;
+}
+
+.title-h2 {
+    font-weight: 600;
+}
+
+p {
+    font-weight: 600;
+    line-height: 17px;
+}
