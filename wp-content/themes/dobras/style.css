@@ -6,40 +6,47 @@ Version: 1.0
 
  */
 * {
-   margin: 0;
-   padding: 0;
-   box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-body {
+body, html {
+    height: 100%;
+}
+
+.wrapper {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-size: 14px;
+    color: #000;
+    font-weight: 600;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     justify-content: space-between;
     height: 100%;
-    font-family: 'Montserrat', sans-serif;
-    font-style: normal;
-    font-size: 14px;
-    color: #000;
 }
 
-.wrap {
+.container {
+    margin: 0 auto;
     width: 1170px;
 }
 
 footer {
     margin-top: auto;
+    height: 550px;
+    display: flex;
 }
 
-
-.title-h1 {
+h1 {
     font-weight: 900;
     font-size: 48px;
     line-height: 59px;
     text-transform: uppercase;
 }
 
-.title-h2 {
+h2 {
     font-weight: 600;
 }
 
@@ -47,3 +54,4 @@ p {
     font-weight: 600;
     line-height: 17px;
 }
+

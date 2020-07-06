@@ -1,0 +1,89 @@
+@charset "UTF-8";
+/*
+Theme Name: Dobras
+Theme URI:
+Version: 1.0
+
+ */
+
+.nav {
+    position: relative;
+    display: flex;
+    font-size: 16px;
+    line-height: 20px;
+    justify-content: space-between;
+    z-index: 5;
+    box-sizing: border-box;
+}
+
+.menu {
+    width: 100%;
+    max-width: 60%;
+    padding: 6vh 0 7vh 0;
+}
+
+.logo {
+    height: 100%;
+}
+
+.logo {
+    padding: 3vh 0 6vh 0;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #575757;
+    transition: .4s color;
+}
+
+.menu a:hover {
+    color: #70a1ff;
+}
+
+.menu .menu-list, .menu-list .menu-item-has-children ul {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+}
+
+.menu-list .menu-item-has-children {
+    position: relative;
+}
+
+.menu-list .menu-item-has-children ul {
+    display: none;
+    min-width: 100%;
+    flex-direction: column;
+    position: absolute;
+    right: 0;
+    border: 1px solid #2f3542;
+    background: #f1f2f6;
+    border-radius: 5px;
+    padding: 15%;
+}
+
+.menu-list .menu-item-has-children::after {
+    content: '\2228';
+    position: relative;
+    font-size: .7rem;
+    color: #575757;
+    bottom: 8%;
+    left: 0;
+    padding-bottom: 15%;
+}
+
+.menu-list .menu-item-has-children:hover::after {
+    color: #70a1ff;
+}
+
+.menu-list .menu-item-has-children:hover::after {
+    content: '\2227';
+}
+
+.menu-list .menu-item-has-children:hover ul {
+    display: block;
+}
+
+.menu-list .menu-item-has-children ul li{
+    padding: 5% 0;
+}

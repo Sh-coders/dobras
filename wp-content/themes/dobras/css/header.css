@@ -1,0 +1,22 @@
+@charset "UTF-8";
+/*
+Theme Name: Dobras
+Theme URI:
+Version: 1.0
+
+ */
+
+.header {
+    position: relative;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 90%;
+    background: #F1F1F1;
+    border-radius: 0px 0px 100px 0px;
+}

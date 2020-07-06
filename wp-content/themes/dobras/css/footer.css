@@ -1,0 +1,90 @@
+.font-light {
+    font-weight: 300;
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+}
+
+.rights-reserved {
+    text-align: center;
+    background: #F1F1F1;
+    padding: 1.5% 0;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 15px;
+    color: #505050;
+}
+
+.footer-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-contacts {
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.footer-address-street div.info p:nth-child(2), .footer-schedule div.info p {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 5%;
+}
+
+.footer-contacts div.info p span, .footer-schedule div.info p, .footer-address-street div.info p:nth-child(2){
+    font-weight: 900;
+}
+
+.footer-address-street div.info p:not(:last-child) {
+    margin-bottom: 4%;
+}
+
+.footer-schedule div.info p:not(:last-child) {
+    margin-bottom: 3%;
+}
+
+.footer-contacts div.info p:not(:last-child) {
+    margin-bottom: 7%;
+}
+
+.footer-content div.info {
+    max-width: 90%;
+    width: 100%;
+}
+
+.footer-main h1 {
+    color: #D72E6D;
+    padding-bottom: 20%;
+}
+
+.footer-contacts, .footer-schedule, .footer-address-street{
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-contacts, .footer-address-street {
+    font-size: 16px;
+    line-height: 20px;
+    margin-bottom: 10%;
+}
+
+.footer-address-street div.info p:first-child {
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.footer-address-street div.info p:last-child {
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.footer-schedule {
+    margin-bottom: 15%;
+}
+
+.footer-schedule div.info p span{
+    display: inline-block;
+    padding-right: 10%;
+}
