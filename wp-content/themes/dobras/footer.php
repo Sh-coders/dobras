@@ -117,7 +117,7 @@ $theme_all_options = get_option('theme_options');
             </div>
         </div>
         <div class="footer-map">
-            Карта
+
         </div>
     </div>
 
