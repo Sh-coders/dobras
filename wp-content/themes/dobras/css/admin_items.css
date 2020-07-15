@@ -1,0 +1,25 @@
+button .add-info {
+    color: #00a0d2;
+    cursor: pointer;
+    margin-bottom: 4px;
+}
+
+.document-list .item-document {
+    display: flex;
+    align-items: center;
+}
+
+.item-document {
+    width: 100%;
+    display: flex;
+}
+
+.document-list .item-document input {
+    width: 100%;
+    max-width: 400px;
+    margin-right: 2%;
+}
+
+.remove-info-document {
+    cursor: pointer;
+}

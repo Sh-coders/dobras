@@ -3,8 +3,8 @@
 Theme Name: Dobras
 Theme URI:
 Version: 1.0
-
  */
+
 * {
     margin: 0;
     padding: 0;
@@ -26,7 +26,6 @@ body, html {
     flex-wrap: nowrap;
     justify-content: space-between;
     height: 100%;
-
 }
 
 .container {
@@ -54,3 +53,52 @@ p {
     line-height: 17px;
 }
 
+.additional-tape {
+    margin: 90px 0;
+    padding: 47px 0;
+    height: 153px;
+    background: #D72E6D;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 500;
+    font-size: 48px;
+    line-height: 59px;
+    text-align: center;
+}
+
+.first-letter {
+    font-weight: 900;
+}
+
+.button {
+    text-decoration: none;
+    cursor: pointer;
+    outline: transparent;
+    color: #FFF;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    text-align: center;
+    text-transform: none;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border: none;
+    transition: .4s opacity;
+    border-radius: 50px;
+    width: 180px;
+    height: 45px;
+}
+
+.blue-btn {
+    background: linear-gradient(180deg, #3A80C0 0%, #005FB7 100%);
+}
+
+.red-btn {
+    background: linear-gradient(180deg, #DD3D78 0%, #C70049 100%);
+}
+
+.tape-button {
+    position: absolute;
+    padding: 15px 35px 15px 36px;
+    margin-left: 144px;
+}

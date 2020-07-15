@@ -1,0 +1,82 @@
+.content {
+    width: 100%;
+    padding: 4% 6% 6% 6%;
+}
+
+.documents, .document {
+    width: 100%;
+}
+
+.content .title-post{
+    font-weight: 900;
+    font-style: normal;
+    font-size: 48px;
+    line-height: 59px;
+    text-transform: uppercase;
+    color: #2B78BE;
+    margin-bottom: 2%;
+}
+
+.documents .document,.documents .document .btn {
+    background-color: #ECECEC;
+    font-weight: 600;
+    font-style: normal;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000000;
+}
+
+.documents .document {
+    display: flex;
+    justify-content: space-between;
+}
+
+.documents .document div:last-child {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+}
+
+.documents .document:not(:last-child) {
+    margin-bottom: 2%;
+}
+
+.documents .document .btn {
+    text-decoration: none;
+    cursor: pointer;
+    outline: transparent;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 14px;
+    background: linear-gradient(180deg, #3A80C0 0%, #005FB7 100%);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 50px;
+    width: 90%;
+    padding: 6% 2%;
+    transition: .4s opacity;
+}
+
+.documents .document .btn:hover {
+    opacity: .8;
+}
+
+.document div:first-child {
+    width: 80%;
+    padding: 2% 1%;
+    flex: 1 0 auto;
+}
+
+.partners-list {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.partners-list img {
+    width: 300px;
+    max-width:100%;
+}

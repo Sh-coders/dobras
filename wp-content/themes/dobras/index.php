@@ -1,44 +1,54 @@
-
 <?php
 /**
  * The main template file
  *
  */
+include 'custom_plugins/index_check_options.php';
+
+add_action('wp_head', 'add_main_page_css');
+function add_main_page_css()
+{
+    wp_enqueue_style('main_page', get_template_directory_uri() . '/css/main_page.css');
+}
+
 get_header();
 ?>
-    <main id="primary" class="site-main">
-        <?php
-        if ( have_posts() ) :
+    <script>
+        const url = '<?php echo $background_url;?>';
+        document.querySelector('body').style.backgroundImage =
+            'linear-gradient(180deg, rgba(212, 201, 196, 0.52) 0%, rgba(199, 182, 176, 0) 37.27%), url('.concat(url).concat(')');
+    </script>
 
-            if ( is_home() && ! is_front_page() ) :
+    <main>
+        <div class="container">
+            <div class="main-block">
+                <div class='h2-container'><h2><?= $h2_text ?></h2></div>
+                <div class='h3-container'><h3><?= $h3_text ?></h3>
+                    <p><?= $additional_text ?></p></div>
+                <?php
+                echo "<div class='btn-group'>
+                <a href='$btn1_link'>
+                <button class='red-btn button'>$btn1_text</button></a>
+                <a href='$btn2_link'>
+                <button class='blue-btn button margin-left-30'>$btn2_text</button></a>
+                </div>";
                 ?>
-                <header>
-                    <h2 class="title-h2"><?php single_post_title(); ?></h2>
-                </header>
+                <a href='#partners-block'>
+                    <img class='arrow-down' src='<?= get_template_directory_uri() . '/img/arrow.png' ?>'
+                         alt='arrow icon'><a>
+            </div>
             <?php
-            endif;
-            /* Start the Loop */
-            while ( have_posts() ) :
-                the_post();
-                /*
-                 * Include the Post-Type-specific template for the content.
-                 * If you want to override this in a child theme, then include a file
-                 * called content-___.php (where ___ is the Post Type name) and that will be used instead.
-                 */
-//            get_template_part( 'template-parts/content', get_post_type() );
-
-            endwhile;
-            the_posts_navigation();
-
-
-        else :
-            echo "Публікацій немає";
-
-        endif;
-        ?>
-
+            if ($partners_display === 'on') {
+                echo "<div id='partners-block' class='partners-block'><h2>$partners_title</h2></div>";
+                include 'custom_plugins/partners_list.php';
+            }
+            ?>
+        </div>
     </main><!-- #main -->
 
 <?php
+if ($tape_display) {
+    include 'custom_plugins/tape.php';
+}
 get_footer();
 

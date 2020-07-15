@@ -1,0 +1,9 @@
+.paginate .page-numbers {
+    border-radius: 10px;
+}
+
+.paginate .page-numbers.current {
+    background: #D72E6D;
+    box-shadow: 0 0 35px rgba(0, 0, 0, 0.15);
+    border-radius: 10px;
+}
