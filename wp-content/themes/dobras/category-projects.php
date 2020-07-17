@@ -1,20 +1,11 @@
 <?php
+/**
+    Шаблон проектов
 
-add_action('wp_head', 'add_css_and_scripts');
-function add_css_and_scripts()
-{
-    wp_enqueue_style('news', get_template_directory_uri() . '/css/news.css');
-    wp_enqueue_style('paginate', get_template_directory_uri() . '/css/paginate.css');
-    wp_enqueue_style('paginate_pink', get_template_directory_uri() . '/css/paginate_pink.css');
-    wp_enqueue_style('progress_bar', get_template_directory_uri() . '/css/progress_bar.css');
-    wp_enqueue_style('projects', get_template_directory_uri() . '/css/projects.css');
-    wp_enqueue_script('progressBar', get_template_directory_uri() . '/js/progress_bar.js');
-    wp_enqueue_style( 'font-1', 'https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap' );
-    wp_enqueue_style( 'font-1' );
-}
-
+ **/
 $current_page = !empty( $_GET['page'] ) ? $_GET['page'] : 1;
 get_header();
+do_action('head_category_projects');
 ?>
 
     <main>
@@ -86,5 +77,6 @@ get_header();
     </main>
 
 <?php
-include 'custom_plugins/tape.php';
+add_tape( $post->ID );
 get_footer();
+?>

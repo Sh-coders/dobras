@@ -1,13 +1,8 @@
 <?php
-
-add_action('wp_head', 'add_css');
-function add_css()
-{
-    wp_enqueue_style('news', get_template_directory_uri() . '/css/news.css');
-    wp_enqueue_style('paginate', get_template_directory_uri() . '/css/paginate.css');
-    wp_enqueue_style( 'font-1', 'https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap' );
-    wp_enqueue_style( 'font-1' );
-}
+/**
+    Шаблон новостей
+ **/
+do_action('head_category');
 
 $current_page = !empty( $_GET['page'] ) ? $_GET['page'] : 1;
 get_header();
@@ -45,23 +40,12 @@ get_header();
             <div class="all-news">
                 <?php while ( $query->have_posts() ) : $query->the_post(); ?>
                 <div class="news">
-                    <div class="img-news">
-                        <?php if ( has_post_thumbnail()) { ?>
-                            <a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>" >
-                                <?php the_post_thumbnail(); ?>
-                            </a>
-                        <?php } ?>
-                    </div>
+                   <?php print_thumbnail(); ?>
                     <div class="info">
                         <a class="title-news" href="<?php the_permalink(); ?>">
                             <?php the_title(); ?>
                         </a>
-                        <p class="excerpt">
-                            <?php the_excerpt_max_char_length(90); ?>
-                        </p>
-                        <time class="date">
-                            <?php the_time('j F Y'); ?>
-                        </time>
+                        <?php print_text(); ?>
                     </div>
                 </div>
                 <?php endwhile; ?>
@@ -69,18 +53,7 @@ get_header();
             </div>
             <div class="paginate">
                 <?php
-                echo paginate_links( array(
-                    'base' => get_category_link($category_id) . '%_%',
-                    'format' => '?page=%#%',
-                    'total' => $query->max_num_pages,
-                    'current' => $current_page,
-                    'prev_next' => true,
-                    'prev_text'    => '&lsaquo;',
-                    'next_text'    => '&rsaquo;',
-                    'mid_size' => '1',
-                ) );
-
-                wp_reset_postdata();
+                paginate( $query->max_num_pages, $current_page, get_category_link($category_id) );
                 ?>
             </div>
         </section>
@@ -88,5 +61,6 @@ get_header();
 </main>
 
 <?php
-include 'custom_plugins/tape.php';
+add_tape( $post->ID );
 get_footer();
+?>

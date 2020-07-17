@@ -1,20 +1,13 @@
 <?php
-/**
- * The main template file
- *
- */
-include 'custom_plugins/index_check_options.php';
-
-add_action('wp_head', 'add_main_page_css');
-function add_main_page_css()
-{
-    wp_enqueue_style('main_page', get_template_directory_uri() . '/css/main_page.css');
-}
+include ( 'front/template/home_check_options.php');
 
 get_header();
+do_action('head_home');
 ?>
     <script>
         const url = '<?php echo $background_url;?>';
+        console.log(url);
+
         document.querySelector('body').style.backgroundImage =
             'linear-gradient(180deg, rgba(212, 201, 196, 0.52) 0%, rgba(199, 182, 176, 0) 37.27%), url('.concat(url).concat(')');
     </script>
@@ -40,15 +33,13 @@ get_header();
             <?php
             if ($partners_display === 'on') {
                 echo "<div id='partners-block' class='partners-block'><h2>$partners_title</h2></div>";
-                include 'custom_plugins/partners_list.php';
+                render_partners_list();
             }
             ?>
         </div>
     </main><!-- #main -->
 
 <?php
-if ($tape_display) {
-    include 'custom_plugins/tape.php';
-}
-get_footer();
-
+    add_tape( $post->ID );
+    get_footer();
+?>

@@ -1,19 +1,46 @@
 <?php
+/**
+    Шаблон конкретного проекта
+ **/
+
+    $date_donors = get_post_meta( $post->ID, 'date_donors', true );
+    $name_donors = get_post_meta( $post->ID, 'name_donors', true );
+    $link_donors = get_post_meta( $post->ID, 'link_donors', true );
+    $amount = get_post_meta( $post->ID, 'amount', true );
+    $documents_link = get_post_meta( $post->ID, 'link_documents', true );
+    $documents_name = get_post_meta( $post->ID, 'name_documents', true );
+    $date_blog = get_post_meta( $post->ID, 'date_blog', true );
+    $link_blog = get_post_meta( $post->ID, 'link_blog', true );
+    $name_blog = get_post_meta( $post->ID, 'name_blog', true );
+    $desired_amount = get_post_meta( $post->ID, 'desired_amount', true );
 
     get_header();
+    do_action( 'head_single_projects' );
 ?>
     <main>
         <div class="container">
             <article class="project">
+                <?php the_post(); ?>
                 <div class="left-col"></div>
                 <div class="right-col">
                     <div class="title">
                         <h3 class="category-project">
-                            Здоров’я
+                            <?php
+                            $category = get_categories(array(
+                                'taxonomy' => 'projects_category',
+                                'type'     => 'projects',
+                            ));
+                            for( $i = 0; $i < count($category); $i++) { ?>
+                                <span>
+                                    <?php echo $category[$i]->cat_name; echo $i + 1 !== count($category) ? ',' : '.'?>
+                                </span>
+                            <?php } ?>
                         </h3>
-                        <h2 class="title-project">Lorem Ipsum is simply dummy text of the printing and typesetting industry</h2>
+                        <h2 class="title-project">
+                            <?php the_title() ?>
+                        </h2>
                         <time class="date">
-                            24 травня 2020
+                            <?php the_time('j F Y'); ?>
                         </time>
                     </div>
                     <div class="data">
@@ -21,36 +48,40 @@
                             <ul>
                                 <li>
                                     <span class="text">Потрiбно зiбрати</span>
-                                    <span class="money">59 000 грн</span>
+                                    <span class="money">
+                                        <?php echo number_format($desired_amount[0], 0,
+                                            '.', ' ')
+                                            ?> грн
+                                    </span>
                                 </li>
                                 <li>
                                     <span class="text">Зібрано</span>
-                                    <span class="money">49 000 грн</span>
+                                    <span class="money"><?php echo number_format(calc_sum( $amount ), 0,
+                                            '.', ' ')
+                                        ?> грн</span>
                                 </li>
                                 <li>
                                     <span class="text">Залишилось</span>
-                                    <span class="money">10 000 грн</span>
+                                    <span class="money"><?php echo number_format(calc_balance( $amount, $desired_amount ),
+                                            0, '.', ' ')
+                                        ?> грн</span>
                                 </li>
                             </ul>
                         </div>
                         <div>
-                            <div class="progress-bar" data-percent="75">
-                                <div class="background"></div>
-                                <div class="rotate"></div>
-                                <div class="left"></div>
-                                <div class="right"></div>
-                                <div class="percent">
-                                    <span></span>
-                                </div>
-                            </div>
+                            <?php
+                            $percent = number_format(calc_percent( $amount, $desired_amount ),
+                                0, '.', '');
+                            print_progress_bar($percent, get_the_ID()) ?>
                         </div>
                         <div>
                             <button type="button" class="btn">Допомогти</button>
                         </div>
                     </div>
-                    <p class="description">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-                    </p>
+
+                    <div class="description">
+                        <?php the_content(); ?>
+                    </div>
                     <div class="info">
                         <div class="info-links">
                             <ul class="info-list">
@@ -72,55 +103,13 @@
                             </ul>
                         </div>
                         <div class="blog-block">
-                            <div>
-                                <time class="date">25.05.2020</time>
-                                <h4>Якась там назва статті</h4>
-                            </div>
-                            <div>
-                                <time class="date">25.05.2020</time>
-                                <h4>Якась там назва статті</h4>
-                            </div>
-                            <div>
-                                <time class="date">25.05.2020</time>
-                                <h4>Якась там назва статті</h4>
-                            </div>
-                            <div>
-                                <time class="date">25.05.2020</time>
-                                <h4>Якась там назва статті</h4>
-                            </div>
+                            <?php print_blog($name_blog, $date_blog, $link_blog); ?>
                         </div>
                         <div class="donors-block">
-                            <div>
-                                <div>
-                                    <time class="date">25.05.2020</time>
-                                    <h4>Анонімна допомога</h4>
-                                </div>
-                                <span class="donors-money">+500.00 грн</span>
-                            </div>
-                            <div>
-                                <div>
-                                    <time class="date">25.05.2020</time>
-                                    <h4>Анонімна допомога</h4>
-                                </div>
-                                <span class="donors-money">+500.00 грн</span>
-                            </div>
-                            <div>
-                                <div>
-                                    <time class="date">25.05.2020</time>
-                                    <h4>Анонімна допомога</h4>
-                                </div>
-                                <span class="donors-money">+500.00 грн</span>
-                            </div>
+                            <?php print_donors($date_donors, $link_donors, $name_donors, $amount) ?>
                         </div>
                         <div class="documents-block">
-                            <div>
-                                <h4>Якась там назва статті</h4>
-                                <a href="#">Переглянути</a>
-                            </div>
-                            <div>
-                                <h4>Якась там назва статті</h4>
-                                <a href="#">Переглянути</a>
-                            </div>
+                            <?php print_documents($documents_link, $documents_name) ?>
                         </div>
                     </div>
                 </div>
@@ -130,6 +119,6 @@
 
 
 <?php
-include 'custom_plugins/tape.php';
-
+add_tape( $post->ID );
 get_footer();
+?>

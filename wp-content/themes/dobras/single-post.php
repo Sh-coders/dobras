@@ -1,2 +1,1 @@
-<?php
-include 'custom_plugins/template.php';
+<?php get_template_part('front/template/template'); ?>

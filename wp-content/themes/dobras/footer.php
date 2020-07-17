@@ -11,13 +11,13 @@ $theme_all_options = get_option('theme_options');
         <div class="footer-content">
             <h2><?php echo $theme_all_options['company_footer_fields_title']; ?></h2>
             <div class="footer-contacts">
-               <?php include 'custom_plugins/footer/footer_contacts.php' ?>
+               <?php include 'front/footer/footer_contacts.php' ?>
             </div>
             <div class="footer-address-street">
-                <?php include 'custom_plugins/footer/footer_address.php' ?>
+                <?php include 'front/footer/footer_address.php' ?>
             </div>
             <div class="footer-schedule">
-                <?php include 'custom_plugins/footer/footer_schedule.php' ?>
+                <?php include 'front/footer/footer_schedule.php' ?>
             </div>
         </div>
         <div class="footer-map">

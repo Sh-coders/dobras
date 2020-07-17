@@ -102,3 +102,22 @@ p {
     padding: 15px 35px 15px 36px;
     margin-left: 144px;
 }
+
+
+@font-face {
+    font-family: Montserrat;
+    src: url('fonts/Montserrat-Light.ttf');
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('fonts/Montserrat-SemiBold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Montserrat;
+    src: url('fonts/Montserrat-Black.ttf');
+    font-weight: 900;
+}

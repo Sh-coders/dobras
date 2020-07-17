@@ -1,25 +1,28 @@
-button .add-info {
-    color: #00a0d2;
+button.add-info.button.button-primary {
     cursor: pointer;
-    margin-bottom: 4px;
+    margin-bottom: 1%;
 }
 
-.document-list .item-document {
+[class^='list-'] [class^='item-'] {
     display: flex;
     align-items: center;
+    margin-bottom: 2%;
 }
 
-.item-document {
+[class^='item-'] {
     width: 100%;
     display: flex;
 }
 
-.document-list .item-document input {
-    width: 100%;
-    max-width: 400px;
-    margin-right: 2%;
+[class^='list-'] [class^='item-'] label {
+    margin-right: .5%;
 }
 
-.remove-info-document {
+.remove-info {
     cursor: pointer;
+    margin-bottom: 2%;
+}
+
+button {
+    margin-left: 1%;
 }

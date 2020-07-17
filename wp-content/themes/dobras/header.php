@@ -4,7 +4,10 @@
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><?php echo wp_get_document_title(); ?></title>
-    <?php wp_head(); ?>
+    <?php wp_head();
+    $theme_params_options = get_option('theme_options');
+    $logo_id = (isset($theme_params_options['site_logo']) ? $theme_params_options['site_logo'] : '#');
+    ?>
 </head>
 <body>
 
@@ -13,7 +16,7 @@
         <nav class="nav container">
             <div class="logo">
                 <a href="<?php echo get_home_url(); ?>">
-                    <img src="<?php echo get_option('logo');?>" alt="company_logo">
+                    <img src="<?php echo wp_get_attachment_image_url($logo_id, 'full' )?>" alt="company_logo">
                 </a>
             </div>
             <?php wp_nav_menu([
@@ -26,4 +29,3 @@
             ]); ?>
         </nav>
     </header>
-
