@@ -22,33 +22,33 @@ function add_theme_option_fields() {
         ['theme_section_1', 'Улица, номер дома', 'company_street', '',
             'Пример вул. Дністровська 49', 'input', 'Введите название улицы и номер дома'],
 
-        ['theme_section_2', 'Понедельник', 'company_schedule_monday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Понедельник', 'company_schedule_monday_start', '', 'от', 'time', ''],
         
-        ['theme_section_2', '', 'company_schedule_monday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_monday_finish', '', 'до', 'time', ''],
         
-        ['theme_section_2', 'Вторник', 'company_schedule_tuesday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Вторник', 'company_schedule_tuesday_start', '', 'от', 'time', ''],
         
-        ['theme_section_2', '', 'company_schedule_tuesday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_tuesday_finish', '', 'до', 'time', ''],
 
-        ['theme_section_2', 'Среда', 'company_schedule_wednesday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Среда', 'company_schedule_wednesday_start', '', 'от', 'time', ''],
 
-        ['theme_section_2', '', 'company_schedule_wednesday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_wednesday_finish', '', 'до', 'time', ''],
 
-        ['theme_section_2', 'Четверг', 'company_schedule_thursday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Четверг', 'company_schedule_thursday_start', '', 'от', 'time', ''],
 
-        ['theme_section_2', '', 'company_schedule_thursday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_thursday_finish', '', 'до', 'time', ''],
 
-        ['theme_section_2', 'Пятница', 'company_schedule_friday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Пятница', 'company_schedule_friday_start', '', 'от', 'time', ''],
 
-        ['theme_section_2', '', 'company_schedule_friday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_friday_finish', '', 'до', 'time', ''],
 
-        ['theme_section_2', 'Суббота', 'company_schedule_saturday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Суббота', 'company_schedule_saturday_start', '', 'от', 'time', ''],
 
-        ['theme_section_2', '', 'company_schedule_saturday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_saturday_finish', '', 'до', 'time', ''],
 
-        ['theme_section_2', 'Воскресенье', 'company_schedule_sunday_start', '', 'от', 'select', ''],
+        ['theme_section_2', 'Воскресенье', 'company_schedule_sunday_start', '', 'от', 'time', ''],
 
-        ['theme_section_2', '', 'company_schedule_sunday_finish', '', 'до', 'select', ''],
+        ['theme_section_2', '', 'company_schedule_sunday_finish', '', 'до', 'time', ''],
 
         ['theme_section_3', 'Текст кнопки на ленте над блоком контактов', 'tape_btn_text', 30,
             'По умолчанию - Пожертвувати', 'input', 'Введите текст кнопки на ленте над блоком контактов (не больше 30 символов)'],
@@ -85,6 +85,6 @@ function add_theme_option_fields() {
 
 add_action('admin_init', 'add_theme_option_fields');
 
-get_template_part( '/back/make_field');
-get_template_part( '/back/render_settings');
+get_template_part( '/back/theme_options/make_field');
+get_template_part( '/back/theme_options/render_settings');
 ?>

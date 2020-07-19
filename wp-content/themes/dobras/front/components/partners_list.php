@@ -1,9 +1,10 @@
 <?php
 // Выводит на странице фронта список партнеров в виде html тегов
-function render_partners_list() {
+function render_partners_list($ID) {
     echo "<div class='partners-list'>";
-    $page = get_page_by_title('Список партнеров для отображения на сайте', OBJECT, 'partners');
-    $ID = $page->ID;
+//    $page = get_page_by_title('Список партнеров для отображения на сайте', OBJECT, 'partners');
+//    print_r($page);
+//    $ID = $page->ID;
     $names = get_post_meta($ID, 'partner_name', 1);
     $links = get_post_meta($ID, 'partner_link', 1);
     $images = get_post_meta($ID, 'partner_image', 1);

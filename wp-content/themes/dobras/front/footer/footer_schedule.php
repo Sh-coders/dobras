@@ -8,6 +8,7 @@
         for ($i = 0; $i < count($days_en); $i++) {
             $day_start = 'company_schedule_' . $days_en[$i] . '_start';
             $day_finish = 'company_schedule_' . $days_en[$i] . '_finish';
+            $theme_all_options = get_option('theme_options');
 
             if ($theme_all_options[$day_start] && $theme_all_options[$day_finish]) {
                 echo "<p><span>$days_uk[$i]</span>$theme_all_options[$day_start]";

@@ -1,5 +1,4 @@
-<?php
-?>
+<?php $theme_all_options = get_option('theme_options'); ?>
     <img src="<?php echo get_template_directory_uri() . '/img/geo.png' ?>" alt="geo map icon">
     <div class="info">
         <p class="font-light footer-address-country">
@@ -10,5 +9,3 @@
         </p>
         <p class="font-light">Як проїхати &rarr;</p>
     </div>
-<?php
-?>

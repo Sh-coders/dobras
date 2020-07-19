@@ -1,15 +1,12 @@
 <?php
-$all_options = get_option('main_page_theme_options');
-$background_url = (isset($all_options['main_page_image']))
-    ? wp_get_attachment_image_src($all_options['main_page_image'], 'full')[0] : "#";
-$h2_text = (isset($all_options['h2_text'])) ? $all_options['h2_text'] : "";
-$h3_text = (isset($all_options['h3_text'])) ? $all_options['h3_text'] : "";
-$additional_text = (isset($all_options['short_text'])) ? $all_options['short_text'] : "";
-$btn1_text = (isset($all_options['main_page_btn1_text'])) ? $all_options['main_page_btn1_text'] : "";
-$btn1_link = (isset($all_options['main_page_btn1_link'])) ? $all_options['main_page_btn1_link'] : "#";
-$btn2_text = (isset($all_options['main_page_btn2_text'])) ? $all_options['main_page_btn2_text'] : "";
-$btn2_link = (isset($all_options['main_page_btn2_link'])) ? $all_options['main_page_btn2_link'] : "#";
-$partners_display = (isset($all_options['display_partners_block'])) ? $all_options['display_partners_block'] : "";
-$partners_title = (isset($all_options['title_partners_block'])) ? $all_options['title_partners_block'] : "";
-$tape_display = (isset($all_options['display_additional_tape'])) ? $all_options['display_additional_tape'] : null;
+$background_img_id = get_post_meta($post->ID, 'main_page_image', 1)[0];
+$background_url = wp_get_attachment_image_src($background_img_id, 'full')[0];
+$h2_text = get_post_meta($post->ID, 'h2_text', 1)[0];
+$h3_text = get_post_meta($post->ID, 'h3_text', 1)[0];
+$additional_text = get_post_meta($post->ID, 'short_text', 1)[0];
+$btn1_text = get_post_meta($post->ID, 'main_page_btn1_text', 1)[0];
+$btn1_link = get_post_meta($post->ID, 'main_page_btn1_link', 1)[0];
+$btn2_text = get_post_meta($post->ID, 'main_page_btn2_text', 1)[0];
+$btn2_link = get_post_meta($post->ID, 'main_page_btn2_link', 1)[0];
+$partners_title = get_post_meta($post->ID, 'title_partners_block', 1)[0];
 ?>

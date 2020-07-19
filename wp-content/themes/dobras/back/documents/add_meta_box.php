@@ -4,9 +4,10 @@
 new Meta_Box(array(
     'id_meta' => 'box_info_documents',
     'name_meta' => 'Информация о Документах',
-    'post_type' => 'documents',
+    'post_type' => 'page',
+    'file_name' => 'documents.php',
     'script' =>  'meta_box',
-    'style' => array( 'admin_items' ),
+    'style' => 'admin_items',
     'meta_array' => array(
         'name' => array(
             'clone' => false,

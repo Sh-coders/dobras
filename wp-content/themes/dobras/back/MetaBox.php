@@ -7,10 +7,10 @@ class Meta_Box
     private $name_meta = null;
     /*группы полей*/
     private $groups = null;
-    private $script = null;
-    private $style = null;
     /*массив мета элементов*/
     private $meta_array = null;
+    private $file_name = null;
+    private $post = null;
 
     public function __construct($args) {
         $data = $args;
@@ -18,27 +18,36 @@ class Meta_Box
         $this->name_meta = $data['name_meta'];
         $this->post_type = $data['post_type'];
         $this->groups = $data['groups'];
-        $this->script = $data['script'];
-        $this->style = $data['style'];
         $this->meta_array = $data['meta_array'];
+        if(isset( $data['file_name'] ) && $data['file_name'] !== '') {
+            $this->file_name = $data['file_name'];
+        }
 
         add_action( 'add_meta_boxes', array( $this, 'add_meta_box' ) );
         add_action( 'save_post', array( $this, 'save_meta_box' ) );
-        add_action( 'admin_print_footer_scripts', array( $this, 'show_assets' ));
     }
 
     ## Добавляет матабоксы
     public function add_meta_box() {
-        add_meta_box( $this->id_meta,
-            $this->name_meta, array( $this, 'render_meta_box'), $this->post_type,
-            'advanced', 'high' );
+        global $post;
+        if ( !is_null( $this->file_name ) ) {
+            if( $this->file_name ===
+                get_post_meta( $post->ID, '_wp_page_template', true ) ) {
+                add_meta_box( $this->id_meta,
+                    $this->name_meta, array($this, 'render_meta_box'), $this->post_type,
+                    'advanced', 'high' );
+            }
+        } else {
+            add_meta_box( $this->id_meta,
+                $this->name_meta, array( $this, 'render_meta_box' ), $this->post_type,
+                'advanced', 'high' );
+        }
     }
 
     ## обрабатываем элемент перед сохранением
     private function processElement( $meta ){
         $item = $_POST[$meta];
-        $item = array_map('sanitize_text_field', $item );
-        return array_filter( $item );
+        return array_map('sanitize_text_field', $item );
     }
 
     ## проверяем мета элемент
@@ -54,8 +63,13 @@ class Meta_Box
 
     ## Очищает и сохраняет значения полей
     public function save_meta_box( $post_id ) {
-
         if ( wp_is_post_autosave( $post_id ) )
+            return;
+
+        if ( wp_is_post_revision( $post_id ) )
+            return;
+
+        if ( !current_user_can( 'edit_post', $post_id ) )
             return;
 
         foreach( $this->groups as $meta_array ){
@@ -74,6 +88,8 @@ class Meta_Box
 
     ## Отображает метабокс на странице редактирования поста
     function render_meta_box( $post ) {
+        wp_nonce_field( $this->id_meta, $this->id_meta.'_wpnonce',
+            false, true );
         ?>
         <div class="info">
                 <?php
@@ -217,58 +233,38 @@ class Meta_Box
         return $input;
     }
 
-    ## Создаем элемент
-    private function createItem( $input, $meta, $elem ){
-        $class = isset( $meta['class'] ) ? $meta['class'] : '';
-        $type =  isset( $meta['input'] ) ? $meta['input'] : 'text';
-        $id = isset( $meta['id'] ) ? $meta['id'] : '';
-        $required = isset( $meta['required'] ) && $meta['required'] ? 'required' : '';
-        $input = $this->createLabel( $meta, $id, $input );
+    private function createHidden( $meta, $input, $elem ) {
+        $hidden = isset( $meta['hidden'] ) ? $meta['hidden'] : false;
+        $parameter = isset( $meta['parameter'] ) ? $meta['name_parameter'] : '';
+        $class_hidden = isset( $meta['class_hidden'] ) ? $meta['class_hidden'] : '';
+        $id_hidden = isset( $meta['id_hidden'] ) ? $meta['id_hidden'] : '';
 
-        $input .= '<input id="'.$id.'" type="'.$type.'" name="'.$elem.'[]" value="%s" class="'.$class.'" '.$required.'>';
+        if( $hidden ){
+            $input .= '<input type="hidden" name="'.$elem.'[]"
+             id="'.$id_hidden.'" class='.$class_hidden.' value="0">';
+        }
 
         return $input;
     }
 
-    ## Подключает скрипты и стили
-    public function show_assets() {
-        if ( is_admin() && get_current_screen()->id == $this->post_type ) {
-            $this->show_scripts();
-            $this->show_styles();
-        }
-    }
+    ## Создаем элемент
+    private function createItem( $input, $meta, $elem ){
+        global $post;
+        $class = isset( $meta['class'] ) ? $meta['class'] : '';
+        $type =  isset( $meta['input'] ) ? $meta['input'] : 'text';
+        $id = isset( $meta['id'] ) ? $meta['id'] : '';
+        $parameter = isset( $meta['parameter'] ) ? $meta['name_parameter'] : '';
+        $required = isset( $meta['required'] ) && $meta['required'] ? 'required' : '';
+        $checked =  isset( $meta['parameter'] ) ?
+            checked(get_post_meta($post->ID, $parameter, 1)) : '';
+        $value = !isset( $meta['parameter'] ) ? 'value="%s"' : 'value="1"';
+        $input = $this->createHidden( $meta, $input, $elem );
+        $input = $this->createLabel( $meta, $id, $input );
 
-    ## Выводит на экран JS
-    public function show_scripts() {
-        ?>
-        <script>
-            <?php if( $this->script !== null ) : ?>
-                <?php if( is_array($this->script) ) : foreach($this->script as $item ) : ?>
-                    <?php include get_stylesheet_directory() . '/js/' . $item . '.js'; ?>
-                <?php endforeach; else:  ?>
-                    <?php include get_stylesheet_directory() . '/js/' . $this->script . '.js'; ?>
-                <?php endif;  ?>
-            <?php endif;  ?>
-        </script>
-        <?php
-    }
+        $input .= '<input id="'.$id.'" type="'.$type.'" name="'.$elem.'[]"
+         '.$value.' class="'.$class.'" '.$required.' '.$checked.'>';
 
-    ## Подключаем стили
-    public function show_styles()
-    {
-        if( $this->style ){
-        ?>
-        <style>
-            <?php if( $this->script !== null ) : ?>
-                <?php if( is_array($this->script) ) : foreach($this->style as $item ) : ?>
-                    <?php include get_stylesheet_directory().'/css/'. $item .'.css'; ?>
-                <?php endforeach; else: ?>
-                <?php include get_stylesheet_directory().'/css/'. $this->style .'.css'; ?>
-                <?php endif;  ?>
-            <?php endif;  ?>
-        </style>
-        <?php
-        }
+        return $input;
     }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-// Отображает чекбокс в админпанели (правый side)
+// Отображает чекбокс в админпанели
 function admin_render_checkbox($post, $key)
 {
 

@@ -5,9 +5,11 @@
 new Meta_Box(array(
     'id_meta' => 'partners_info',
     'name_meta' => 'Информация о партнере',
-    'post_type' => 'partners',
-    'script' => array ('meta_box'),
+    'post_type' => 'page',
+    'file_name' => 'partners.php',
+    'script' => array('meta_box'),
     'style' => 'admin_items',
+
     'meta_array' => array(
         'partner_name' => array(
             'clone' => true,
@@ -17,6 +19,7 @@ new Meta_Box(array(
             'title' => 'Название',
             'placeholder' => ''
         ),
+
         'partner_link' => array(
             'clone' => true,
             'required' => true,
@@ -26,6 +29,7 @@ new Meta_Box(array(
             'title' => 'Ссылка',
             'placeholder' => ''
         ),
+
         'partner_image' => array(
             'clone' => true,
             'required' => true,
@@ -38,10 +42,11 @@ new Meta_Box(array(
                 'title' => 'Выбрать файл',
                 'class' => 'img-button',
             ),
-       ),
+        ),
     ),
+
     'groups' => array(
-        array( 'partner_name', 'partner_link', 'partner_image'),
+        array('partner_name', 'partner_link', 'partner_image'),
     ),
 ));
 ?>

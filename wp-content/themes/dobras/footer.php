@@ -4,20 +4,20 @@
  *
  * @package Dobras
  */
-$theme_all_options = get_option('theme_options');
 ?>
 <footer id="footer">
     <div class="footer-main container">
         <div class="footer-content">
-            <h2><?php echo $theme_all_options['company_footer_fields_title']; ?></h2>
+            <h2><?php echo get_option('theme_options')['company_footer_fields_title']; ?>
+            </h2>
             <div class="footer-contacts">
-               <?php include 'front/footer/footer_contacts.php' ?>
+                <?php get_template_part('front/footer/footer_contacts'); ?>
             </div>
             <div class="footer-address-street">
-                <?php include 'front/footer/footer_address.php' ?>
+                <?php get_template_part('front/footer/footer_address'); ?>
             </div>
             <div class="footer-schedule">
-                <?php include 'front/footer/footer_schedule.php' ?>
+                <?php get_template_part('front/footer/footer_schedule'); ?>
             </div>
         </div>
         <div class="footer-map">

@@ -5,24 +5,23 @@ button.add-info.button.button-primary {
 
 [class^='list-'] [class^='item-'] {
     display: flex;
-    align-items: center;
+    width: 100%;
     margin-bottom: 2%;
 }
 
-[class^='item-'] {
-    width: 100%;
-    display: flex;
+[class^='list-'] [class^='item-'] input  {
+    margin: 0 1%;
 }
 
-[class^='list-'] [class^='item-'] label {
-    margin-right: .5%;
+[class *='list-'] {
+    border-color: lightblue;
+    border-radius: 5px;
+    border-width: thin;
+    border-style: solid;
+    padding: 1%;
 }
 
 .remove-info {
     cursor: pointer;
     margin-bottom: 2%;
-}
-
-button {
-    margin-left: 1%;
 }

@@ -1,13 +1,21 @@
 <?php
-include ( 'front/template/home_check_options.php');
+/*
+Template Name: Mainpage
+*/
+include('front/template/home_check_options.php');
 //get_template_part( 'front/template/home_check_option');
-
+global $post;
 get_header();
 do_action('head_home');
+//if (is_page_template('front-page.php')) {
+//    print_r(get_post_meta($post->ID, 'partner_name', 1));
+//}
+
 ?>
     <script>
-        const url = '<?php echo $background_url;?>';
-         document.querySelector('body').style.backgroundImage =
+        const url =
+            '<?php echo $background_url;?>';
+        document.querySelector('body').style.backgroundImage =
             'linear-gradient(180deg, rgba(212, 201, 196, 0.52) 0%, rgba(199, 182, 176, 0) 37.27%), url('.concat(url).concat(')');
     </script>
 
@@ -30,15 +38,12 @@ do_action('head_home');
                          alt='arrow icon'><a>
             </div>
             <?php
-            if ($partners_display === 'on') {
-                echo "<div id='partners-block' class='partners-block'><h2>$partners_title</h2></div>";
-                render_partners_list();
-            }
+            echo "<div id='partners-block' class='partners-block'><h2>$partners_title</h2></div>";
+            $pages = get_pages(['meta_key' => 'partner_name']);
+            render_partners_list($pages[0]->ID);
             ?>
         </div>
     </main><!-- #main -->
 
-<?php
-   add_tape( $post->ID );
-    get_footer();
-?>
+<?php add_tape($post->ID);
+get_footer(); ?>

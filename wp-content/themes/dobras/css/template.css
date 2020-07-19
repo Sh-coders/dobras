@@ -42,3 +42,7 @@ h1,h2 + figure {
     margin: 35px auto 34px auto;
     max-width: 970px;
 }
+
+section {
+   padding: 0 !important;
+}
