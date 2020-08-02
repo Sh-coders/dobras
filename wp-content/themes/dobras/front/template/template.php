@@ -2,63 +2,77 @@
 /**
  * The template single and pages
  */
-
 get_header();
 // Добавляет на страницу файл стилей css
-do_action('head_template' );
 do_action('head_category');
-global $post;
+do_action('head_template');
+
+global $ID;
+global $theme_all_options;
 ?>
 
     <div class="container">
         <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-            <div>
+            <div class="title-container">
                 <?php
-                the_title('<h1 class="entry-title">', '</h1>');
+                the_title('<div class="title-container">
+                <h1 class="entry-title">', '</h1></div>');
                 ?>
             </div><!-- .entry-header -->
             <div class="entry-content">
+                <?php if (has_post_thumbnail()) {
+                    $img = wp_get_attachment_image_url(get_post_thumbnail_id(), 'large'); ?>
+                    <div class="img-title" style="
+                            background: url('<?php echo $img ?>') no-repeat top center;
+                            background-size: cover;
+                            "></div>
+                <?php } ?>
                 <?php
                 while (have_posts()) : the_post();
                     the_content(); // выводим контент
                 endwhile;
-                $theme_all_options = get_option('theme_options');
-                if (get_post_meta($post->ID, 'another_posts', 1) == 1) {
-                    echo "<h2>" . $theme_all_options['field_see_also'] . "</h2>"; ?>
-                     <section class="section-news">
-            <div class="header-news">
-            <?php if ( have_posts() ) :
-                $query = new WP_Query( array(
-                    'posts_per_page' => 10,
-                    'category_name' => single_cat_title( '', false ),
-                ) );
-            ?>
-                <h2 class="title-post">
-                    <?php echo single_cat_title( '', false ); ?>
-                </h2>
-            </div>
-            <div class="all-news">
-                <?php while ( $query->have_posts() ) : $query->the_post(); ?>
-                <div class="news">
-                   <?php print_thumbnail(); ?>
-                    <div class="info">
-                        <a class="title-news" href="<?php the_permalink(); ?>">
-                            <?php the_title(); ?>
-                        </a>
-                        <?php print_text(); ?>
-                    </div>
-                </div>
-                <?php endwhile; ?>
-                <?php endif; ?>
-            </div>
-        </section>
-<?php wp_reset_postdata();
+                $value= get_post_meta($ID, 'another_posts', 1);
+                if ($value !== 'off') {
+                    echo "<h2 class='see-also-title'>" . $theme_all_options['field_see_also'] . "</h2>"; ?>
+                    <section class="section-news">
+                        <div class="header-news">
+                            <?php
+                            $query = new WP_Query(array(
+                                'post_type' => 'post',
+                                'post__not_in' => array($ID),
+                                'showposts' => 3,
+                                'orderby' => 'rand',
+                            ));
+                            if ( $query->have_posts() ) :
+
+                            ?>
+                            <h2 class="title-post">
+                                <?php echo single_cat_title('', false); ?>
+                            </h2>
+                        </div>
+                        <div class="all-news">
+                            <?php while ($query->have_posts()) : $query->the_post(); ?>
+                                <div class="news">
+                                    <?php print_thumbnail( 250); ?>
+                                    <div class="info">
+                                        <?php get_the_category( $post->ID ); ?>
+                                        <a class="title-news" href="<?php the_permalink(); ?>">
+                                            <?php the_category(); ?>
+                                        </a>
+                                        <?php print_text(); ?>
+                                    </div>
+                                </div>
+                            <?php endwhile; ?>
+                            <?php endif; ?>
+                        </div>
+                    </section>
+                    <?php wp_reset_postdata();
                 }
                 ?>
             </div><!-- .entry-content -->
     </div><!-- .content -->
 
 <?php
-add_tape( $post->ID );
+add_tape($ID);
 get_footer();
 ?>

@@ -1,0 +1,104 @@
+@charset "UTF-8";
+/*
+Theme Name: Dobras
+Theme URI:
+Version: 1.0
+ */
+
+h1 {
+    margin: 72px 0 35px 0;
+    color: #2B78BE;
+}
+
+.partners-list {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.partners-list a {
+    width: 16.5%;
+    align-self: center;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.partners-list img {
+    max-height: 70px;
+    max-width: 139px;
+    margin: 0 auto;
+    height:100%;
+    height:auto;
+    display: block;
+    filter: grayscale(1);
+}
+
+.partners-list img:hover {
+    transition: 1s;
+    filter: none;
+}
+
+.title-container {
+    width: 970px;
+    margin: 0 auto;
+}
+
+
+@media (max-width: 1090px) {
+    .title-container {
+       margin-left: 5vw;
+    }
+}
+
+@media (max-width: 990px) {
+    .partners-list a {
+        width: 20%;
+    }
+}
+
+@media (max-width: 830px) {
+    .title-container {
+        width: 85%;
+    }
+
+    .partners-list a {
+        width: 25%;
+    }
+}
+
+@media (max-width: 670px) {
+    .title-container {
+        width: 70%;
+    }
+
+    .partners-list a {
+        width: 33.3%;
+    }
+}
+
+@media (max-width: 600px) {
+    .title-container {
+        width: 50%;
+    }
+
+    .partners-list a {
+        width: 50%;
+    }
+}
+
+@media (max-width: 400px) {
+    .title-container {
+        width: 35%;
+    }
+}
+
+@media (max-width: 320px) {
+    .title-container {
+        width: 25%;
+    }
+
+    .title-container h1 {
+        font-size: 36px;
+    }
+}

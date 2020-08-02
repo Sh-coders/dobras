@@ -37462,7 +37462,7 @@ function (_Component) {
 
 /* harmony default export */ var date_time_date = (date_DatePicker);
 
-// CONCATENATED MODULE: ./node_modules/@wordpress/components/build-module/date-time/time.js
+// CONCATENATED MODULE: ./node_modules/@wordpress/components/build-module/date-time/add_time_class.js
 
 
 
